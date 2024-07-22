@@ -3,15 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {PhotoViewer} from './photoViewer/PhotoViewer.tsx'
-import { ImageSelector } from './photoViewer/ImageSelector.tsx'
+import { ImageSelector, currentImage } from './photoViewer/ImageSelector.tsx'
 import { GetImageUrls } from './photoViewer/ImageSelector.tsx'
+
+
 
 function App() {
   const [count, setCount] = useState(0)
   const imagesID = [1, 24, 32, 36, 44, 47];
   const url = GetImageUrls(imagesID);
 
-  const [currentImage, setCurrentImage] = useState('https://picsum.photos/id/250/600/300.jpg')
 
   //console.log(url)
 
@@ -33,16 +34,8 @@ function App() {
       <PhotoViewer photoUrl={currentImage} />
 
       <ImageSelector urlList={url}/>
-      
-      {/* <button onClick={() => setCurrentImage((currentImage) => Math.min(currentImage + 1,url.length))}></button> */}
 
-      <div>
-        {url.map(imageUrl => { 
-          return  <div>
-                    {imageUrl}
-                    <img className='thumbnail' onClick={() => setCurrentImage(imageUrl)} src={imageUrl} alt="image" />
-                  </div> })}
-      </div>
+      
 
     </>
   )

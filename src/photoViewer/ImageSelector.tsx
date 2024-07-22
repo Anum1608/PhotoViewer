@@ -1,10 +1,21 @@
 import React from "react";  // import React (to provide access to TSX)
+import { useState } from 'react'
+import './ImageSelector.css'
 
 
-export function ImageSelector(props) {    // declare and export new function called 'PhotoViewer'
+export const [currentImage, setCurrentImage] = useState('https://picsum.photos/id/250/600/300.jpg')
+   
+
+
+export function ImageSelector({urlList}: {urlList: string[]}) {    
+    
     return (                
-        <div>               
-            Hello World ! in ImageSelector
+
+        <div>
+            {urlList.map(imageUrl => { 
+                return          <div>
+                                <img className='thumbnail' onClick={() => setCurrentImage(imageUrl)} src={imageUrl} />
+                                </div> })}
         </div>
     );
 }
